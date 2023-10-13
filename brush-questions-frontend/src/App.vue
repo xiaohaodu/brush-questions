@@ -4,13 +4,12 @@
 </template>
 
 <script>
-
 import Navigationbar from "@/components/navigationbar/navigationbar";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Navigationbar
-  }
+    Navigationbar,
+  },
 };
 </script>
 
