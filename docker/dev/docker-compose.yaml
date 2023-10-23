@@ -1,0 +1,51 @@
+services:
+  brush-question-frontend:
+    image: nginx:stable-perl
+    ports:
+      - 8091:80
+    networks:
+      - brush-question
+      - docker
+    container_name: brush-question-frontend
+    depends_on:
+      - brush-question-backend
+    volumes:
+      - "./nginx:/etc/nginx/conf.d"
+      - "./brush-question-frontend:/etc/nginx/html"
+  brush-question-backend:
+    image: duxiaohao/pm2:v1
+    ports:
+      - 8090:8090
+    container_name: brush-question-backend
+    networks:
+      - brush-question
+      - docker
+    volumes:
+      - ./brush-question-backend:/brush-question-backend
+    depends_on:
+      - brush-question-mysql
+    working_dir: /brush-question-backend
+    entrypoint: pm2-runtime start ecosystem.config.js
+  brush-question-mysql:
+    image: mysql:oracle
+    ports:
+      - 3308:3306
+    container_name: brush-question-mysql
+    restart: always
+    networks:
+      - brush-question
+      - docker
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 187139
+      MYSQL_DATABASE: brush-question
+    volumes:
+      - "./mysql/conf:/etc/mysql/conf.d:r"
+      - "./mysql/init:/docker-entrypoint-initdb.d:rw"
+networks:
+  brush-question:
+    name: brush-question
+    driver: bridge
+  docker:
+    name: docker
+    driver: bridge

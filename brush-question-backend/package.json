@@ -1,0 +1,41 @@
+{
+  "name": "brush-question-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "build": "ncc build app.js -o dist & npm run apidoc & npm run copy",
+    "apidoc": " apidoc -i router_handler -o  apidoc",
+    "copy": "copyfiles -u 1 ./build/ecosystem.config.js dist & copyfiles apidoc/**/* dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "0.0.1-security",
+    "hapi": "^18.1.0",
+    "https": "^1.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7",
+    "qs": "^6.11.0"
+  },
+  "devDependencies": {
+    "@escook/express-joi": "^1.1.1",
+    "@vercel/ncc": "^0.38.1",
+    "copyfiles": "^2.4.1",
+    "express-jwt": "^7.7.5",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^3.0.1"
+  },
+  "apidoc": {
+    "title": "接口文档",
+    "url": "https://bq.api.mayuan.work",
+    "version": "1.0.0"
+  }
+}
