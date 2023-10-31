@@ -1,9 +1,11 @@
 name: deploy brush-question-backend
 on:
-  #监听push操作
+  workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - "brush-question-backend/**"
 jobs:
   build:
     runs-on: ubuntu-latest
