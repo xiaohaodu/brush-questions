@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon --exec cross-env NODE_ENV=development nodemon app.js",
+    "preview": "cross-env NODE_ENV=production node ./dist/index.js",
     "build": "ncc build app.js -o dist & npm run apidoc && npm run copy",
     "apidoc": " apidoc -i router_handler -o  apidoc",
     "copy": "copyfiles -u 1 ./build/ecosystem.config.js dist && copyfiles apidoc/**/* dist && copyfiles apidoc/** dist"
