@@ -1,12 +1,15 @@
 module.exports = {
   apps: [
     {
-      name: "brush-question", // app name
+      name: "brush-question-backend", // app name
       script: "./index.js", // 启动执行文件
       watch: true,
       exec_mode: "cluster",
       instances: "max",
       watch_delay: 1000, // 文件变化后，延迟重启时间
+      env: {
+        NODE_ENV: "production",
+      },
     },
   ],
 };
