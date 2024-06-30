@@ -10,6 +10,10 @@
       "brush-question-frontend"
     ]
   },
+  "engines": {
+    "node": "16.20.2",
+    "pnpm": "8.8.0"
+  },
   "scripts": {
     "prod-deploy": "pnpm build && pnpm copy:prod ",
     "dev-deploy": "pnpm build && pnpm copy:dev",
